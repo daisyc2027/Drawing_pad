@@ -1,21 +1,18 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
-import java.beans.EventHandler;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.*;
 
-class DrawVolume extends JPanel{
-    private int volume;
-}
+//class DrawVolume extends JPanel{
+//    private int volume;
+//}
 
 class PaintUi extends JPanel implements MouseMotionListener, MouseListener{
     Point point1;
     Point point2;
     Line2D currentLine;
-    private ArrayList<Point> currentPoints = new ArrayList<>();
-    private ArrayList<Line2D> lines = new ArrayList<>();
+    private final ArrayList<Line2D> lines = new ArrayList<>();
 
     public PaintUi(){
         super();
