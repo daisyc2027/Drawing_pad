@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
+import java.beans.EventHandler;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -13,6 +14,7 @@ class PaintUi extends JPanel implements MouseMotionListener, MouseListener{
     Point point1;
     Point point2;
     Line2D currentLine;
+    private ArrayList<Point> currentPoints = new ArrayList<>();
     private ArrayList<Line2D> lines = new ArrayList<>();
 
     public PaintUi(){
@@ -45,6 +47,9 @@ class PaintUi extends JPanel implements MouseMotionListener, MouseListener{
     public void mouseDragged(MouseEvent e) {
         point2 = e.getPoint();
         currentLine = new Line2D.Double(point1, point2);
+        lines.add(currentLine);
+        point1 = e.getPoint();
+        point2 = null;
         repaint();
     }
 
@@ -78,7 +83,7 @@ class PaintUi extends JPanel implements MouseMotionListener, MouseListener{
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+        EventQueue.invokeLater(() -> {
             JFrame frame = new JFrame("Line drawer");
             frame.setSize(500, 500);
             PaintUi paintUi = new PaintUi();
